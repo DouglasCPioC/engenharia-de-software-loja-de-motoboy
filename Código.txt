@@ -16,10 +16,10 @@ import bpy
 # left and right channel
 """
 
-# left file chanel ("C:\Users\DouglasCPioC\Desktop\TRABALHO DE CG\Water drops.mp3") 
-file_l = "C:\Users\DouglasCPioC\Desktop\TRABALHO DE CG\Water drops.mp3"
+# left file chanel ("C:\Folder\music.flac" or "/media/music.ogg") 
+file_l = "/media/music.ogg"
 # right file chanel
-file_r = "C:\Users\DouglasCPioC\Desktop\TRABALHO DE CG\Water drops.mp3"
+file_r = "/media/music.ogg"
 
 #################
 # basic options #
@@ -29,7 +29,7 @@ file_r = "C:\Users\DouglasCPioC\Desktop\TRABALHO DE CG\Water drops.mp3"
 # generated objects before you run script again
 
 bake = 1            # bake sound to f-curves, 1=yes 0=no, useful for tesing
-stereo = 1          # channels to bake, 1=only left, 2=only right, 3=stereo
+stereo = 3          # channels to bake, 1=only left, 2=only right, 3=stereo
 
 value_x = 50         # value of cubes on X axis (must be over 0!)
 value_y = 1         # value of cubes on Y axis (must be over 0!)
@@ -43,7 +43,7 @@ offset = 1          # delay in frames between changes 'count' value of array mod
 center_space = 1    # adding some space between right and left row of the visualisation
 slash = 0           # adding transform for objects in X axis line, looks like "V" char
 
-drivmod = 20      # driver "amplifier" (Imprecise column height)
+drivmod = 20.0      # driver "amplifier" (Imprecise column height)
 low = 200           # min freq, doesn't work yet (removed broken code)
 herz = 20000        # max frequency value, dafault 20000
 question = 1        # 1-exponential frequency, 2-linear frequency
@@ -165,7 +165,7 @@ if stereo == 1 or stereo == 3:
             bpy.context.active_object.name = (no + "_" + ny + "_" + nx)
             bpy.data.objects[no + "_"  + ny + "_" + nx].animation_data.action.fcurves[0].hide = True
             bpy.data.objects[no + "_"  + ny + "_" + nx].animation_data.action.fcurves[1].hide = True
-            .ops.mesh.primitive_cube_add(location=(-float_rx - space_x/2, float_ry, 0))
+            bpy.ops.mesh.primitive_cube_add(location=(-float_rx - space_x/2, float_ry, 0))
             bpy.ops.transform.resize(value=(scale[0],scale[1],scale[2]))
             bpy.ops.object.transform_apply(scale=True)
             nc = "cub_L"
