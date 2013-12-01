@@ -1,0 +1,50 @@
+# # # # # # # #
+# # ESQUERDA
+# # # # # # # #
+
+se  stereo  ==  1  ou  estéreo  ==  3 :
+    float_rx  =  0  +  center_space
+    float_ry  =  0
+    passo  =  0
+    iniciar  =  s
+    para  ry  na  gama ( 0 ,  value_y ):
+        para  rx  na  gama ( 0 ,  value_x ):
+            bpy . contexto . cena . frame_current  =  início
+            bpy . ops . objeto . adicionar ( local = ( - float_rx  -  space_x / 2 ,  float_ry ,  ouu ))
+            bpy . ops . anim . keyframe_insert_menu ( tipo = 'Escala' )
+            bpy . contexto . área . digite  =  'GRAPH_EDITOR'
+            step2  =  passo
+            se  cozer  ==  1 :
+                se  pergunta  ==  1 :
+                    passo  =  herz
+                    para  que  no  intervalo  ( 0 ,  value_x - rx ):
+                        passo  =  passo  /  pow
+                    bpy . ops . gráfico . sound_bake ( filepath = file_l ,  baixo = ( step2 ),  alta = passo )
+                elif  questão  ==  2 :
+                    passo  =  ( rx + 1 ) * ( herz / value_x )
+                    bpy . ops . gráfico . sound_bake ( filepath = file_l ,  baixo = ( step2 ),  alta = passo )
+            bpy . contexto . área . digite  =  'TEXT_EDITOR'
+            nx  =  rx  +  1 ;  nx  =  str ( nx )
+            ny  =  ry  +  1 ;  ny  =  str ( ny )
+            nenhum  =  "obj_L"
+            bpy . contexto . active_object . name  =  ( não  +  "_"  +  ny  +  "_"  +  nx )
+            bpy . dados . objetos [ não  +  "_"   +  ny  +  "_"  +  nx ] . animation_data . ação . fcurves [ 0 ] . esconder  =  verdadeira
+            bpy . dados . objetos [ não  +  "_"   +  ny  +  "_"  +  nx ] . animation_data . ação . fcurves [ 1 ] . esconder  =  verdadeira
+            bpy . ops . malha . primitive_cube_add ( local = ( - float_rx  -  space_x / 2 ,  float_ry ,  0 ))
+            bpy . ops . transformar . redimensionar ( valor = ( escala [ 0 ], escala [ 1 ], escala [ 2 ]))
+            bpy . ops . objeto . transform_apply ( escala = verdadeiro )
+            nc  =  "cub_L"
+            bpy . contexto . active_object . name  =  ( nc  +  "_"  +  ny  +  "_"  +  nx )
+            se  cozer  ==  1 :
+                bpy . ops . objeto . modifier_add ( tipo = 'array' )
+                bpy . contexto . active_object . modificadores [ 'array' ] . relative_offset_displace [ 0 ]  =  0
+                bpy . contexto . active_object . modificadores [ 'array' ] . relative_offset_displace [ 2 ]  =  space_array
+                drivering ()
+            se  compensar  > =  2 :
+                curve_modifier ()
+            float_rx  =  float_rx + space_x
+            float_ry  =  float_ry + barra
+        float_ry  =  float_ry + space_y - ( barra * value_x )  
+        float_rx  =  float_rx  -  space_x  *  value_x
+        iniciar  =  iniciar + compensado
+        passo  =  0
