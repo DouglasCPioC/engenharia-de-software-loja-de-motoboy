@@ -1,9 +1,10 @@
-classdef atendente
-    %ATENDENTE Summary of this class goes here
+classdef motoboy
+    %MOTOBOY Summary of this class goes here
     %   Detailed explanation goes here
+    
     properties
-        codat;
-        nomeat;    
+        codboy;
+        nomeboy; 
     end
     
     methods
