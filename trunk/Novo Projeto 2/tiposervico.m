@@ -3,6 +3,7 @@ classdef tiposervico
     %   Detailed explanation goes here
     
     properties
+        codtipo;
     end
     
     methods
