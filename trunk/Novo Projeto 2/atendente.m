@@ -3,7 +3,7 @@ classdef atendente
     %   Detailed explanation goes here
     properties
         codat;
-        nomeat;
+        %nomeat;
     end
     
     methods
