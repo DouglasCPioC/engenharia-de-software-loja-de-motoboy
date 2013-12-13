@@ -22,7 +22,7 @@ function varargout = login(varargin)
 
 % Edit the above text to modify the response to help login
 
-% Last Modified by GUIDE v2.5 11-Dec-2013 00:07:22
+% Last Modified by GUIDE v2.5 12-Dec-2013 22:39:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -126,9 +126,6 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 nome=(get(handles.edit1,'String'))
 senha=(get(handles.edit2,'String'))
-a=0;
 
 close 
 guihandles(telaprincipal); 
-
-
