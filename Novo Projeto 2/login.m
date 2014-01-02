@@ -124,8 +124,24 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-nome=(get(handles.edit1,'String'))
-senha=(get(handles.edit2,'String'))
+nome=cellstr(get(handles.edit1,'String'));
+senha=(get(handles.edit2,'String'));
 
+[totallogin, totalsenha]= efetuarlogin ();
+[a,b,c]= comparastring (totallogin,totalsenha,nome,senha);
+
+
+if a == 2
 close 
 guihandles(telaprincipal); 
+else
+    if b==0 & c== 0
+            button =warndlg(' Login e senha incorretos','Erro');
+    else if b== 0
+            button =warndlg(' Login incorreto','Erro');
+        else
+            button =warndlg(' Senha incorreta','Erro');
+        end
+    end  
+    
+end
