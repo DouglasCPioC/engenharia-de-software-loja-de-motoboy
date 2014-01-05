@@ -22,7 +22,7 @@ function varargout = novopedido(varargin)
 
 % Edit the above text to modify the response to help novopedido
 
-% Last Modified by GUIDE v2.5 02-Jan-2014 12:39:08
+% Last Modified by GUIDE v2.5 04-Jan-2014 18:40:14
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -82,6 +82,17 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+serv = get(handles.popupmenu1, 'Value');
+total = get(handles.edit4,'String');
+reg = get(handles.edit6,'String');
+nome=get(handles.edit5,'String');
+descr=get(handles.edit1,'String');
+[codreg]= pegacodreg(reg);
+[codcli]= pegacodcli(nome);
+bd = database('empresamoto', 'root', '', 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/');
+colnames = {'dataemissao','descr','total','status','codat','codreg','codcli','codtipo'};
+guardanobd = {date,descr,total,0,1,codreg,codcli,serv};
+insert(bd, 'ordemserv', colnames, guardanobd);
 
 
 % --- Executes on selection change in popupmenu1.
@@ -274,3 +285,18 @@ function Untitled_1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 close 
 guihandles(telaprincipal);
+
+
+% --- Executes during object deletion, before destroying properties.
+function edit1_DeleteFcn(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- If Enable == 'on', executes on mouse press in 5 pixel border.
+% --- Otherwise, executes on mouse press in 5 pixel border or over edit1.
+function edit1_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)

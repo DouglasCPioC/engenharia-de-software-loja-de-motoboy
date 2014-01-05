@@ -22,7 +22,7 @@ function varargout = telaprincipal(varargin)
 
 % Edit the above text to modify the response to help telaprincipal
 
-% Last Modified by GUIDE v2.5 12-Dec-2013 22:57:54
+% Last Modified by GUIDE v2.5 05-Jan-2014 01:24:08
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -126,3 +126,12 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close
+guihandles(gerarsaida); 
