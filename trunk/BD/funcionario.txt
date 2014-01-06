@@ -1,0 +1,15 @@
+===Base de Dados funcionario
+
+== Estrutura da tabela usuario
+
+|------
+|Coluna|Tipo|Nulo|Predefinido
+|------
+|//**id**//|bigint(20)|Não|
+|login|varchar(20)|Não|
+|senha|varchar(20)|Não|
+== Extraindo dados da tabela usuario
+
+|1|Luiz|123
+|2|Douglas|4567
+|3|Ciro|6789
