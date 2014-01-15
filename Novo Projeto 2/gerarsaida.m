@@ -22,7 +22,7 @@ function varargout = gerarsaida(varargin)
 
 % Edit the above text to modify the response to help gerarsaida
 
-% Last Modified by GUIDE v2.5 05-Jan-2014 02:07:46
+% Last Modified by GUIDE v2.5 14-Jan-2014 16:48:28
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -88,16 +88,16 @@ caso = get(handles.popupmenu1, 'Value');
 switch caso
     case 1
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="1"');   
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="1" AND statusos="0"');   
     case 2
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="2"');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="2" AND statusos="0" ');
     case 3
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="3"');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="3" AND statusos="0"');
     case 4
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="4"');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="4" AND statusos="0"');
 end     
 
 coluna = {'Data','          Descrição          ','Total a Pagar'};
@@ -172,8 +172,8 @@ hora=get(handles.edit6,'String');
 bd = database('empresamoto', 'root', '', 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/');
 colnames = {'datasai','horasai','codboy'};
 guardanobd = {data,hora,codboy};
-insert(bd, 'saida', colnames, guardanobd);
-
+insert(bd, 'saida', colnames, guardanobd)
+%update(bd,'ordemserv',{'numsai'},1,'where numord= ''16,17,18''');
 
 
 function edit3_Callback(hObject, eventdata, handles)
@@ -219,3 +219,12 @@ function edit6_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --------------------------------------------------------------------
+function retorna_Callback(hObject, eventdata, handles)
+% hObject    handle to retorna (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close 
+guihandles(telaprincipal);
