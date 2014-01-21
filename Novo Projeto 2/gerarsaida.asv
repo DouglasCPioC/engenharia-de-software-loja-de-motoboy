@@ -153,10 +153,10 @@ javaaddpath 'mysql-connector-java-5.1.27-bin.jar';
  setdbprefs('DataReturnFormat','cellarray');
  results2 = fetch(bd,'SELECT nomeboy,placa,statusmoto FROM motoboy M INNER JOIN posse P ON M.codboy=P.codboy INNER JOIN moto MT ON MT.codmoto=P.codmoto');   
  %numsai=fetch(bd,'SELECT COUNT(numsai) FROM saida S INNER JOIN moto MT ON MT.codmoto=S.codmoto GROUP BY codmoto')
-coluna = {'Nome','Placa','Status'};
+coluna = {'Nome','Placa','Status','Numero de Saídas'};
 rows= {};
 % position: [horizontal vertical dimensão(hori) dim(vertical)]
-teste2 = uitable('Position',[280 150 230 90],'Rowname',rows,'Columnname',coluna,'Data',results2);
+teste2 = uitable('Position',[260 150 300 90],'Rowname',rows,'Columnname',coluna,'Data',results2);
 
 
 % --- Executes on button press in pushbutton2.
@@ -175,7 +175,7 @@ NaN2=isempty(data);
 NaN3=isempty(hora);
 
 if NaN == 1 | NaN2==1 | NaN3==1 
-    msgbox('Verifique se todos os campos estão preenchidos','Erro','error');     
+    msgbox('Verifique se todos os campos estão preenchidos','Erro','warn');     
 else
 [codboy]= pegacodboy(nomeboy);
 colnames = {'datasai','horasai','codboy'};
@@ -243,6 +243,6 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+button =warndlg(' Login e senha incorretos','Erro');
 close 
 guihandles(telaprincipal);
