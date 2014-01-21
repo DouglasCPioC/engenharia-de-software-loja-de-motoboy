@@ -22,7 +22,7 @@ function varargout = novopedido(varargin)
 
 % Edit the above text to modify the response to help novopedido
 
-% Last Modified by GUIDE v2.5 04-Jan-2014 18:40:14
+% Last Modified by GUIDE v2.5 21-Jan-2014 18:59:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -84,14 +84,16 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 serv = get(handles.popupmenu1, 'Value');
 total = get(handles.edit4,'String');
-reg = get(handles.edit6,'String');
+bai = get(handles.edit3,'String');
 nome=get(handles.edit5,'String');
 descr=get(handles.edit1,'String');
-[codreg]= pegacodreg(reg);
+date=get(handles.edit7,'String');
+dateli=get(handles.edit8,'String');
+[codbairro]= pegacodbairro(bai);
 [codcli]= pegacodcli(nome);
 bd = database('empresamoto', 'root', '', 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/');
-colnames = {'dataemissao','descr','total','status','codat','codreg','codcli','codtipo'};
-guardanobd = {date,descr,total,0,1,codreg,codcli,serv};
+colnames = {'dataemissao','datalimite','descr','total','statusos','codat','codbairro','codcli','codtipo'};
+guardanobd = {date,date,descr,total,0,1,codbairro,codcli,serv};
 insert(bd, 'ordemserv', colnames, guardanobd);
 
 
@@ -300,3 +302,49 @@ function edit1_ButtonDownFcn(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function edit7_Callback(hObject, eventdata, handles)
+% hObject    handle to edit7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit7 as text
+%        str2double(get(hObject,'String')) returns contents of edit7 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit7_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit8_Callback(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit8 as text
+%        str2double(get(hObject,'String')) returns contents of edit8 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit8_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
