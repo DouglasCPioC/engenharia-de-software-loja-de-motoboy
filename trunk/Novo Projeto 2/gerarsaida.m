@@ -88,16 +88,16 @@ caso = get(handles.popupmenu1, 'Value');
 switch caso
     case 1
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="1" AND statusos="0"');   
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv O INNER JOIN bairro B ON O.codbairro=B.codbairro WHERE codreg="1" AND statusos="0"');   
     case 2
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="2" AND statusos="0" ');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv O INNER JOIN bairro B ON O.codbairro=B.codbairro WHERE codreg="2" AND statusos="0"');
     case 3
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="3" AND statusos="0"');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv O INNER JOIN bairro B ON O.codbairro=B.codbairro WHERE codreg="3" AND statusos="0"');
     case 4
             setdbprefs('DataReturnFormat','cellarray');
-            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv WHERE codreg="4" AND statusos="0"');
+            results = fetch(bd,'SELECT dataemissao ,descr,total FROM ordemserv O INNER JOIN bairro B ON O.codbairro=B.codbairro WHERE codreg="4" AND statusos="0"');
 end     
 
 coluna = {'Data','          Descrição          ','Total a Pagar'};
@@ -151,9 +151,9 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 javaaddpath 'mysql-connector-java-5.1.27-bin.jar';
  bd = database('empresamoto', 'root', '', 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/');
  setdbprefs('DataReturnFormat','cellarray');
- results2 = fetch(bd,'SELECT nomeboy,placa,statusmoto FROM motoboy M INNER JOIN posse P ON M.codboy=P.codboy INNER JOIN moto MT ON MT.codmoto=P.codmoto');   
+ results2 = fetch(bd,'SELECT nomeboy,statusmoto FROM motoboy M INNER JOIN posse P ON M.codboy=P.codboy INNER JOIN moto MT ON MT.codmoto=P.codmoto');   
  %numsai=fetch(bd,'SELECT COUNT(numsai) FROM saida S INNER JOIN moto MT ON MT.codmoto=S.codmoto GROUP BY codmoto')
-coluna = {'Nome','Placa','Status'};
+coluna = {'Nome','Status'};
 rows= {};
 % position: [horizontal vertical dimensão(hori) dim(vertical)]
 teste2 = uitable('Position',[280 150 230 90],'Rowname',rows,'Columnname',coluna,'Data',results2);
