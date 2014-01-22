@@ -151,9 +151,9 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 javaaddpath 'mysql-connector-java-5.1.27-bin.jar';
  bd = database('empresamoto', 'root', '', 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/');
  setdbprefs('DataReturnFormat','cellarray');
- results2 = fetch(bd,'SELECT nomeboy,statusmoto FROM motoboy M INNER JOIN posse P ON M.codboy=P.codboy INNER JOIN moto MT ON MT.codmoto=P.codmoto');   
+ results2 = fetch(bd,'SELECT codboy,nomeboy,statusboy FROM motoboy');   
  %numsai=fetch(bd,'SELECT COUNT(numsai) FROM saida S INNER JOIN moto MT ON MT.codmoto=S.codmoto GROUP BY codmoto')
-coluna = {'Nome','Status'};
+coluna = {'Código','Nome','Status'};
 rows= {};
 % position: [horizontal vertical dimensão(hori) dim(vertical)]
 teste2 = uitable('Position',[280 150 230 90],'Rowname',rows,'Columnname',coluna,'Data',results2);
@@ -181,6 +181,7 @@ else
 colnames = {'datasai','horasai','codboy'};
 guardanobd = {data,hora,codboy};
 insert(bd, 'saida', colnames, guardanobd);
+msgbox('Operação Realizada com Sucesso','Erro','error');
 end
 
 
